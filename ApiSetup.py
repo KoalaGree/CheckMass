@@ -29,10 +29,6 @@ class Amazon(Resource):
 class Naver(Resource):
     def get(self, email):
         try:
-            regex = r"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$"
-            match = re.match(regex, email)
-            if match == None:
-                return 'ISI EMAIL JEMBOD', 200
             headers = {
                 'authority': 'nid.naver.com',
                 'accept': '*/*',
