@@ -111,10 +111,6 @@ class Apple(Resource):
             faker = Faker()
             ua = UserAgent()
             #email = identifier
-            regex = r"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$"
-            match = re.match(regex, email)
-            if match == None:
-                return 'ISI EMAIL JEMBOD', 200
             try:
                 header = {
                 'X-Forwarded-For': faker.ipv4(network=True, private=True),
