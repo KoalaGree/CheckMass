@@ -111,6 +111,10 @@ class Apple(Resource):
             faker = Faker()
             ua = UserAgent()
             #email = identifier
+            regex = r"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$"
+            match = re.match(regex, email)
+            if match == None:
+                return 'ISI EMAIL JEMBOD', 200
             try:
                 header = {
                 'X-Forwarded-For': faker.ipv4(network=True, private=True),
@@ -140,17 +144,17 @@ class Apple(Resource):
                 response = session.post('https://idmsac.apple.com/authenticate', headers=header, data=params)
                 #print (response)
                 if 'Access denied. ' in response.text:
-                    #return 'Live'
-                    return {'error': 200, 'type': 'Apple Prox', 'status': 'live', 'msg': email, 'response': 'Access denied.'}, 200
+                    return 'Live'
+                    #return {'error': 200, 'type': 'Apple Prox', 'status': 'live', 'msg': email, 'response': 'Access denied.'}, 200
                 elif '503 Service ' in response.text:
-                    #return 'Error'
-                    return {'error': 503, 'type': 'Apple Prox', 'status': 'error', 'msg': email, 'response': '503 Service'}, 200
+                    return 'Error'
+                    #return {'error': 503, 'type': 'Apple Prox', 'status': 'error', 'msg': email, 'response': '503 Service'}, 200
                 else:
-                    #return 'Die'
-                    return {'error': 301, 'type': 'Apple Prox', 'status': 'die', 'msg': email, 'response': 'DIE'}, 200
+                    return 'Die'
+                    #return {'error': 301, 'type': 'Apple Prox', 'status': 'die', 'msg': email, 'response': 'DIE'}, 200
             except:
-                #return 'Unknown'
-                return {'error': 404, 'type': 'Apple Prox', 'status': 'die', 'msg': email, 'response': 'NO PROXY'}, 200
+                return 'Unknown'
+                #return {'error': 404, 'type': 'Apple Prox', 'status': 'die', 'msg': email, 'response': 'NO PROXY'}, 200
             
 
 
