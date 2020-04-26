@@ -144,8 +144,8 @@ class Apple(Resource):
                 response = session.post('https://idmsac.apple.com/authenticate', headers=header, data=params)
                 #print (response)
                 if 'Access denied. ' in response.text:
-			        return 'Live'
-                    return {'error': 200, 'type': 'Apple Prox', 'status': 'live', 'msg': email, 'response': 'Access denied.'}, 200
+                    return 'Live'
+                    #return {'error': 200, 'type': 'Apple Prox', 'status': 'live', 'msg': email, 'response': 'Access denied.'}, 200
                 elif '503 Service ' in response.text:
 			        return 'Error'
                     #return {'error': 503, 'type': 'Apple Prox', 'status': 'error', 'msg': email, 'response': '503 Service'}, 200
